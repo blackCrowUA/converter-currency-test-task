@@ -1,0 +1,21 @@
+.currency-display {
+  background: rgba(210, 210, 210, 0.15);
+  border-radius: 10px;
+  width: 100px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  padding: 2px;
+}
+
+.currency-title {
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 20px;
+    height: 16px;
+    margin-left: 3px;
+  }
+}

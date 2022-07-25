@@ -1,0 +1,9 @@
+<div class="currency-display">
+  <div class="currency-title">
+    <span>{{ currency.title }}</span>
+    <img src="{{ currency.imageLink }}" />
+  </div>
+  <div class="currency-price">
+    {{ currency.price | currency: "UAH":"symbol-narrow" }}
+  </div>
+</div>
