@@ -1,6 +1,7 @@
 export interface ICurrencyDisplay {
   title: string;
   imageLink: string;
-  price: number;
-  apiLink: string;
+  buyPrice?: number;
+  sellPrice?: number;
+  currencyCode: number;
 }

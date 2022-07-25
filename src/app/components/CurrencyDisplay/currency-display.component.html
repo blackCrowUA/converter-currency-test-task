@@ -4,6 +4,7 @@
     <img src="{{ currency.imageLink }}" />
   </div>
   <div class="currency-price">
-    {{ currency.price | currency: "UAH":"symbol-narrow" }}
+    {{ currency.buyPrice | currency: "UAH":"symbol-narrow" }} /
+    {{ currency.sellPrice | currency: "UAH":"symbol-narrow" }}
   </div>
 </div>
