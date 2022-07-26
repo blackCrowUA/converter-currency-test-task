@@ -16,3 +16,13 @@ export const currencies: ICurrencyDisplay[] = [
     currencyCode: 978,
   },
 ];
+
+export const UAH: ICurrencyDisplay[] = [
+  {
+    title: 'UAH',
+    imageLink: 'https://i.ibb.co/rx9JxjJ/icons8-ukraine-80px-1-1.png',
+    buyPrice: 1,
+    sellPrice: 1,
+    currencyCode: 980,
+  },
+];

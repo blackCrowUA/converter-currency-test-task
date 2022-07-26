@@ -2,9 +2,9 @@
   <div class="first-currency">
     <mat-form-field appearance="fill">
       <mat-label>Currency</mat-label>
-      <mat-select [(value)]="firstSelected">
+      <mat-select [(value)]="firstCurrency[0].currencyCode">
         <mat-option
-          *ngFor="let currency of currencyData.currencies"
+          *ngFor="let currency of firstCurrency"
           [value]="currency.currencyCode"
         >
           <div class="currency-option">
@@ -14,15 +14,24 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+
     <mat-form-field style="margin-left: 10px" appearance="fill">
       <mat-label>Value</mat-label>
-      <input matInput type="number" [(ngModel)]="firstValue" />
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="firstValue"
+        (ngModelChange)="onFirstValueChange($event)"
+      />
     </mat-form-field>
   </div>
   <div class="second-currency">
     <mat-form-field appearance="fill">
       <mat-label>Currency</mat-label>
-      <mat-select [(value)]="secondSelected">
+      <mat-select
+        [(value)]="selectedCurrencyCode"
+        (selectionChange)="onSecondCurrencyChange($event)"
+      >
         <mat-option
           *ngFor="let currency of currencyData.currencies"
           [value]="currency.currencyCode"
@@ -34,9 +43,15 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+
     <mat-form-field style="margin-left: 10px" appearance="fill">
       <mat-label>Value</mat-label>
-      <input matInput type="number" [(ngModel)]="secondValue" />
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="secondValue"
+        (ngModelChange)="onSecondValueChange($event)"
+      />
     </mat-form-field>
   </div>
 </div>

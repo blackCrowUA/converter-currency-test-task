@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CurrencyDataService } from 'src/app/services/currency-data.service';
-
-interface Food {
-  value: string;
-  viewValue: string;
-}
+import { UAH } from 'src/app/data/currency-display';
 
 @Component({
   selector: 'app-convertor',
@@ -13,24 +9,51 @@ interface Food {
 })
 export class ConvertorComponent implements OnInit {
   constructor(protected currencyData: CurrencyDataService) {}
-  nodeType: any;
+  firstCurrency = UAH;
 
-  firstSelected: number = 0;
-  secondSelected: number = 0;
+  selectedCurrencyCode: number = 0;
 
   firstValue: number = 0;
   secondValue: number = 0;
 
   ngOnInit(): void {
-    this.nodeType = this.currencyData.currencies[0];
-    if (this.currencyData.currencies.length >= 2) {
-      this.firstSelected = this.currencyData.currencies[0].currencyCode;
-      this.secondSelected = this.currencyData.currencies[1].currencyCode;
+    this.selectedCurrencyCode = this.currencyData.currencies[0].currencyCode;
+  }
+
+  onFirstValueChange(value: number) {
+    if (value == null) {
+      return;
+    }
+    this.firstValue = value;
+
+    let currentCurrency = this.currencyData.currencies.find(
+      (x) => x.currencyCode === this.selectedCurrencyCode
+    );
+
+    //get choosed currency
+    if (currentCurrency?.buyPrice != null) {
+      this.secondValue = this.firstValue / currentCurrency.buyPrice;
     }
   }
-  foods: Food[] = [
-    { value: 'steak-0', viewValue: 'Steak' },
-    { value: 'pizza-1', viewValue: 'Pizza' },
-    { value: 'tacos-2', viewValue: 'Tacos' },
-  ];
+
+  onSecondValueChange(value: number) {
+    if (value == null) {
+      return;
+    }
+    this.secondValue = value;
+
+    //get choosed currency
+    let currentCurrency = this.currencyData.currencies.find(
+      (x) => x.currencyCode === this.selectedCurrencyCode
+    );
+
+    if (currentCurrency?.buyPrice != null) {
+      this.firstValue = this.secondValue * currentCurrency.buyPrice;
+    }
+  }
+
+  onSecondCurrencyChange(data: any) {
+    this.selectedCurrencyCode = data.value;
+    this.onSecondValueChange(this.secondValue);
+  }
 }
