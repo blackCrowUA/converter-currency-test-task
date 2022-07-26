@@ -1,0 +1,42 @@
+<div class="convertor">
+  <div class="first-currency">
+    <mat-form-field appearance="fill">
+      <mat-label>Currency</mat-label>
+      <mat-select [(value)]="firstSelected">
+        <mat-option
+          *ngFor="let currency of currencyData.currencies"
+          [value]="currency.currencyCode"
+        >
+          <div class="currency-option">
+            <img with="25" height="15" [src]="currency.imageLink" />
+            <span style="margin-left: 5px">{{ currency.title }}</span>
+          </div>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field style="margin-left: 10px" appearance="fill">
+      <mat-label>Value</mat-label>
+      <input matInput type="number" [(ngModel)]="firstValue" />
+    </mat-form-field>
+  </div>
+  <div class="second-currency">
+    <mat-form-field appearance="fill">
+      <mat-label>Currency</mat-label>
+      <mat-select [(value)]="secondSelected">
+        <mat-option
+          *ngFor="let currency of currencyData.currencies"
+          [value]="currency.currencyCode"
+        >
+          <div class="currency-option">
+            <img with="25" height="15" [src]="currency.imageLink" />
+            <span style="margin-left: 5px">{{ currency.title }}</span>
+          </div>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field style="margin-left: 10px" appearance="fill">
+      <mat-label>Value</mat-label>
+      <input matInput type="number" [(ngModel)]="secondValue" />
+    </mat-form-field>
+  </div>
+</div>
